@@ -1,6 +1,6 @@
 {
   "name": "react-json-form-factory",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A simple JSON to form convertor for reactJS",
   "main": "dist/index.js",
   "files": [

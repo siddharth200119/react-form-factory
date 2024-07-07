@@ -1,7 +1,12 @@
 "use strict";
 
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 var _react = _interopRequireWildcard(require("react"));
+var _Field = _interopRequireDefault(require("./Field"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { "default": e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n["default"] = e, t && t.set(e, n), n; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -15,9 +20,48 @@ function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) 
 function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function formBuilder(props) {
+  //inputs
+
+  //fields
   var fields = props.fields;
-  var title = props.title ? props.title : "Form";
+
+  //process title
+  var title;
+  if (props.title !== undefined) {
+    if (_typeof(props.title) === String) {
+      title = {
+        text: props.title,
+        classes: "testing"
+      };
+    } else {
+      title = props.title;
+    }
+  } else {
+    title = {
+      text: "Form",
+      classes: "testing"
+    };
+  }
+
+  //process submit btn
+  var submit_btn;
+  if (props.submit_btn !== undefined) {
+    if (_typeof(props.submit_btn) === String) {
+      submit_btn = {
+        text: props.submit_btn,
+        classes: "testing"
+      };
+    } else {
+      submit_btn = props.submit_btn;
+    }
+  } else {
+    submit_btn = {
+      text: "Form",
+      classes: "testing"
+    };
+  }
   var _useState = (0, _react.useState)(fields.reduce(function (acc, field) {
       acc[field.name] = field.value;
       return acc;
@@ -36,16 +80,18 @@ function formBuilder(props) {
     console.log('Form Data Submitted:', formData);
   };
   return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h1", {
-    className: "".concat(title.classes ? title.classes : "")
-  }), /*#__PURE__*/_react["default"].createElement("form", null, fields.map(function (field, index) {
+    className: "".concat(title.classes ? title.classes : null)
+  }, title.text), /*#__PURE__*/_react["default"].createElement("form", null, fields.map(function (field, index) {
     return /*#__PURE__*/_react["default"].createElement("div", {
       key: index
-    }, /*#__PURE__*/_react["default"].createElement("label", null, field.label), /*#__PURE__*/_react["default"].createElement("input", {
-      type: field.type,
-      name: field.name,
-      value: formData[field.name],
-      placeholder: field.placeholder,
-      onChange: handleChange
+    }, /*#__PURE__*/_react["default"].createElement(_Field["default"], {
+      data: field,
+      updateVal: handleChange
     }));
-  })));
+  }), /*#__PURE__*/_react["default"].createElement("button", {
+    type: "submit",
+    className: "".concat(submit_btn.classes ? submit_btn.classes : null),
+    onClick: handleSubmit
+  }, submit_btn.text)));
 }
+var _default = exports["default"] = formBuilder;
