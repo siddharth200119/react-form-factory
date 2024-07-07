@@ -1,0 +1,45 @@
+{
+  "name": "react-json-form-factory",
+  "version": "1.0.0",
+  "description": "A simple JSON to form convertor for reactJS",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siddharth200119/react-form-factory.git"
+  },
+  "keywords": [
+    "form",
+    "builder",
+    "react",
+    "react-component",
+    "factory",
+    "maker"
+  ],
+  "author": "Siddharth Ramnani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siddharth200119/react-form-factory/issues"
+  },
+  "homepage": "https://github.com/siddharth200119/react-form-factory#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.7",
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7"
+  }
+}
