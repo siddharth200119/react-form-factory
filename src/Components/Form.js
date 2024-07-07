@@ -40,7 +40,10 @@ function formBuilder(props){
                         />
                     </div>
                 ))}
+                <button type="submit" onClick={handleSubmit}>Submit</button>
             </form>
         </div>
     )
 }
+
+export default formBuilder;
