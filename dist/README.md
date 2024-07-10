@@ -65,7 +65,7 @@ function App() {
 |fields|**List of Objects**|List of fields in the order you want to display them|
 |title|**Object**|Object with the title text and classes to be applied to it|
 |submit_btn|**object**|Object with the submit button text and classes|
-|handleSubmit|**Function or String**|Function to be called while submitting (fields is passed to it), If a string then a POST request will me made to the URL, and if null then the values will be console logged|
+|onSubmit|**Function or String**|Function to be called while submitting (fields is passed to it), If a string then a POST request will me made to the URL, and if null then the values will be console logged|
 
 ## Supported Parameters for Field
 
