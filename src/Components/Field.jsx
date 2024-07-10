@@ -1,81 +1,89 @@
 import React from "react";
 import "./Field.css";
 
-function Field(props){
+function Field(props) {
     const data = props.data;
 
-    switch(data.type){
-        case "text": 
+    const renderError = (error) => {
+        return error ? <div className="form__error">{data.errorMessage}</div> : null;
+    };
+
+    switch (data.type) {
+        case "text":
         case "email":
         case "password":
-            return(
+            return (
                 <div className="form__group field">
-                    <input 
-                        type={data.type} 
-                        id={data.name} 
-                        disabled={data.disabled} 
-                        value={data.value} 
-                        name={data.name} 
-                        onChange={props.updateVal} 
-                        placeholder={data.placeholder} 
-                        className="form__field" 
-                        required 
+                    <input
+                        type={data.type}
+                        id={data.name}
+                        disabled={data.disabled}
+                        value={data.value}
+                        name={data.name}
+                        onChange={props.updateVal}
+                        placeholder={data.placeholder}
+                        className="form__field"
+                        required
                     />
                     <label htmlFor={data.name} className="form__label">{data.label}</label>
+                    {renderError(data.error)}
                 </div>
             );
         case "number":
         case "datetime-local":
         case "date":
-            return(
+            return (
                 <div className="form__group field">
-                    <input 
-                        type={data.type} 
-                        id={data.name} 
-                        disabled={data.disabled} 
-                        value={data.value} 
-                        name={data.name} 
-                        onChange={props.updateVal} 
-                        placeholder={data.placeholder} 
-                        min={data.minValue} 
-                        max={data.maxValue} 
-                        step={data.stepSize} 
-                        className="form__field--date" 
-                        required 
+                    <input
+                        type={data.type}
+                        id={data.name}
+                        disabled={data.disabled}
+                        value={data.value}
+                        name={data.name}
+                        onChange={props.updateVal}
+                        placeholder={data.placeholder}
+                        min={data.minValue}
+                        max={data.maxValue}
+                        step={data.stepSize}
+                        className="form__field--date"
+                        required
                     />
                     <label htmlFor={data.name} className="form__label">{data.label}</label>
+                    {renderError(data.error)}
                 </div>
-            )
+            );
         case "textarea":
-            return(
+            return (
                 <div className="form__group field">
-                    <textarea 
-                        id={data.name} 
-                        value={data.value} 
-                        disabled={data.disabled} 
-                        name={data.name} 
+                    <textarea
+                        id={data.name}
+                        value={data.value}
+                        disabled={data.disabled}
+                        name={data.name}
                         rows={data.rows}
                         cols={data.cols}
-                        onChange={props.updateVal} 
-                        className="form__field" 
-                        required 
+                        onChange={props.updateVal}
+                        className="form__field"
+                        required
                     />
                     <label htmlFor={data.name} className="form__label">{data.label}</label>
+                    {renderError(data.error)}
                 </div>
-            )
+            );
         case "file":
-            return(
+            return (
                 <div className="form__group field">
-                    <input 
-                        type={data.type} 
-                        id={data.name} 
-                        disabled={data.disabled} 
-                        name={data.name} 
-                        accept={data.accept} 
-                        multiple={data.multiple ? true : undefined} 
-                        required 
+                    <input
+                        type={data.type}
+                        id={data.name}
+                        disabled={data.disabled}
+                        name={data.name}
+                        accept={data.accept}
+                        multiple={data.multiple ? true : undefined}
+                        required
                     />
                     <label htmlFor={data.name} className="form__label">{data.label}</label>
+                    {renderError(data.error)}
                 </div>
             );
         case "dropdown":
@@ -97,6 +105,7 @@ function Field(props){
                         ))}
                     </select>
                     <label htmlFor={data.name} className="form__label">{data.label}</label>
+                    {renderError(data.error)}
                 </div>
             );
         case "radio":
@@ -121,6 +130,7 @@ function Field(props){
                             </label>
                         </div>
                     ))}
+                    {renderError(data.error)}
                 </div>
             );
         case "checkbox":
@@ -136,11 +146,11 @@ function Field(props){
                                 disabled={option.disabled}
                                 value={option.value}
                                 checked={data.checkedValues.includes(option.value)}
-                                onChange={function(e){
+                                onChange={function (e) {
                                     const index = data.checkedValues.indexOf(option.value)
-                                    if(index===-1){
+                                    if (index === -1) {
                                         data.checkedValues.push(option.value)
-                                    }else{
+                                    } else {
                                         data.checkedValues.splice(index, 1)
                                     }
                                     props.updateVal(e, option.value)
@@ -153,6 +163,7 @@ function Field(props){
                             </label>
                         </div>
                     ))}
+                    {renderError(data.error)}
                 </div>
             );
         default:

@@ -9,6 +9,11 @@ require("./Field.css");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 function Field(props) {
   var data = props.data;
+  var renderError = function renderError(error) {
+    return error ? /*#__PURE__*/_react["default"].createElement("div", {
+      className: "form__error"
+    }, data.errorMessage) : null;
+  };
   switch (data.type) {
     case "text":
     case "email":
@@ -28,7 +33,7 @@ function Field(props) {
       }), /*#__PURE__*/_react["default"].createElement("label", {
         htmlFor: data.name,
         className: "form__label"
-      }, data.label));
+      }, data.label), renderError(data.error));
     case "number":
     case "datetime-local":
     case "date":
@@ -50,7 +55,7 @@ function Field(props) {
       }), /*#__PURE__*/_react["default"].createElement("label", {
         htmlFor: data.name,
         className: "form__label"
-      }, data.label));
+      }, data.label), renderError(data.error));
     case "textarea":
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "form__group field"
@@ -67,7 +72,7 @@ function Field(props) {
       }), /*#__PURE__*/_react["default"].createElement("label", {
         htmlFor: data.name,
         className: "form__label"
-      }, data.label));
+      }, data.label), renderError(data.error));
     case "file":
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "form__group field"
@@ -82,7 +87,7 @@ function Field(props) {
       }), /*#__PURE__*/_react["default"].createElement("label", {
         htmlFor: data.name,
         className: "form__label"
-      }, data.label));
+      }, data.label), renderError(data.error));
     case "dropdown":
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "form__group field"
@@ -103,7 +108,7 @@ function Field(props) {
       })), /*#__PURE__*/_react["default"].createElement("label", {
         htmlFor: data.name,
         className: "form__label"
-      }, data.label));
+      }, data.label), renderError(data.error));
     case "radio":
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "form__group"
@@ -127,7 +132,7 @@ function Field(props) {
           htmlFor: "".concat(data.name, "_").concat(option.value),
           className: "form__label--inline"
         }, option.label));
-      }));
+      }), renderError(data.error));
     case "checkbox":
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "form__group"
@@ -159,7 +164,7 @@ function Field(props) {
           htmlFor: "".concat(data.name, "_").concat(option.value),
           className: "form__label--inline"
         }, option.label));
-      }));
+      }), renderError(data.error));
     default:
       return null;
   }

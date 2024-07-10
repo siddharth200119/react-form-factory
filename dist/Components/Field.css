@@ -1,108 +1,126 @@
-  .form__group {
-    position: relative;
-    padding: 15px 0 0;
-    margin-top: 10px;
-    width: 50%;
-  }
-  
-  .form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid var(--border);
-    outline: 0;
-    font-size: 1.3rem;
-    color: var(--white);
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-  
-    &::placeholder {
-      color: transparent;
-    }
-  
-    &:placeholder-shown ~ .form__label {
-      font-size: 1.3rem;
-      cursor: text;
-      top: 20px;
-    }
+.form__group {
+  position: relative;
+  padding: var(--paddingTopBottom) 0 0;
+  margin-top: var(--marginTop);
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: var(--borderWidth) solid var(--colorBorder);
+  outline: 0;
+  font-size: var(--fontSize);
+  color: var(--colorText);
+  padding: var(--paddingField);
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
   }
 
-  .form__field--date {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid var(--border);
-    outline: 0;
-    font-size: 0.8rem;
-    color: var(--white);
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-  
-    &::placeholder {
-      color: transparent;
-    }
-  
-    &:placeholder-shown ~ .form__label {
-      font-size: 1.3rem;
-      cursor: text;
-      top: 20px;
-    }
+  &:placeholder-shown ~ .form__label {
+    font-size: var(--fontSize);
+    cursor: text;
+    top: 20px;
   }
-  
-  .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: var(--border);
-  }
-  
-  .form__label--inline {
-    position: static;
-    display: inline-block;
-    transition: none;
-    font-size: 1rem;
-    color: var(--border);
-    margin-left: 5px;
-  }
-  
-  .form__field:focus {
-    ~ .form__label {
-      position: absolute;
-      top: 0;
-      display: block;
-      transition: 0.2s;
-      font-size: 1rem;
-      color: var(--primary);
-      font-weight: 700;
-    }
-    padding-bottom: 6px;
-    font-weight: 700;
-    border-width: 3px;
-    border-image: linear-gradient(to right, var(--primary), var(--secondary));
-    border-image-slice: 1;
-  }
-  
-  .form__radio:checked + .form__label--inline,
-  .form__checkbox:checked + .form__label--inline {
-    color: var(--primary);
-    font-weight: 700;
-  }
-  
-  .form__field {
-    &:required,
-    &:invalid {
-      box-shadow: none;
-    }
+}
+
+.form__field--date {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: var(--borderWidth) solid var(--colorBorder);
+  outline: 0;
+  font-size: var(--fontSizeSmall);
+  color: var(--colorText);
+  padding: var(--paddingField);
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
   }
 
-  .form__radio-group,
-  .form__checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+  &:placeholder-shown ~ .form__label {
+    font-size: var(--fontSize);
+    cursor: text;
+    top: 20px;
   }
-  
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: var(--fontSizeLabel);
+  color: var(--colorBorder);
+}
+
+.form__label--inline {
+  position: static;
+  display: inline-block;
+  transition: none;
+  font-size: var(--fontSizeLabel);
+  color: var(--colorBorder);
+  margin-left: 5px;
+}
+
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: var(--fontSizeLabel);
+  color: var(--colorPrimary);
+  font-weight: 700;
+}
+
+.form__field:focus {
+  padding-bottom: var(--paddingBottomFocus);
+  font-weight: 700;
+  border-width: var(--borderWidthFocus);
+  border-image: linear-gradient(to right, var(--colorPrimary), var(--colorSecondary));
+  border-image-slice: 1;
+}
+
+.form__radio:checked + .form__label--inline,
+.form__checkbox:checked + .form__label--inline {
+  color: var(--colorPrimary);
+  font-weight: 700;
+}
+
+.form__field:required,
+.form__field:invalid {
+  box-shadow: none;
+}
+
+.form__radio-group,
+.form__checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-top: var(--marginTop);
+}
+
+.form__error {
+  font-size: var(--fontSizeError);
+  color: var(--colorError);
+}
+
+.form__submit {
+  background-color: var(--buttonBg);
+  color: var(--buttonColor);
+  padding: var(--buttonPadding);
+  border: none;
+  margin-top: var(--buttonMarginTop);
+  border-radius: var(--buttonBorderRadius);
+  font-size: var(--buttonFontSize);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form__submit:hover {
+  background-color: var(--colorSecondary);
+}
